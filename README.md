@@ -20,11 +20,19 @@ in this external wire crate: the shared core gains no Protobuf dependency,
 generated message types or code generator.
 
 The core Git dependency pins
-[`204eaa24`](https://github.com/PLeVasseur/up-rust/commit/204eaa24cde3378620f5883a49881bbd7b4fabb4),
-the same revision used by both transport adapters and the native wire. Changes to
-that shared contract require compatibility checks across all four consumers.
+[`02c6340`](https://github.com/PLeVasseur/up-rust/commit/02c6340115f089dd13552f3a03ba30de1d98d8b4) on the
+experimental `codex/allocator-mcu-spike` branch, the same revision used by both
+uP-L1 transports, the native wire and both allocator providers. Changes to that
+shared contract require compatibility checks across all six consumers.
 This crate contains `#![forbid(unsafe_code)]`. It is experimental and has no
 crates.io release enabled.
+
+On macOS and Linux this SDK revision selects its host execution model
+automatically. For `aarch64-apple-darwin`, `aarch64-unknown-linux-gnu` and
+`x86_64-unknown-linux-gnu` it also builds a small deadline C shim with the native
+`clang` and `ar` (cross-compiling the shim is not supported), and a Linux x86-64
+build must target a CX16 minimum ISA, for example `-C target-feature=+cmpxchg16b`.
+See the [SDK core README](https://github.com/PLeVasseur/up-rust/blob/02c6340115f089dd13552f3a03ba30de1d98d8b4/core/README.md).
 
 ## Codec behavior
 
@@ -69,7 +77,9 @@ successfully encodable values. Values outside the Protobuf format/address-space
 limit return unknown size and are refused before publication. An inconsistent
 caller-provided `Message` implementation is not trusted for memory safety.
 
-Compile-only compatibility checks passed on stable, Rust 1.88 and Rust 1.100:
+At this pin, locked library checks passed with stable 1.98.1, Rust 1.88.0 and
+Rust 1.100.0, and the test targets compiled with Rust 1.88.0, on an aarch64 macOS
+host. The compile-only commands are:
 
 ```sh
 cargo +1.88.0 check --locked --tests
