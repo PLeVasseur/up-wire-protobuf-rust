@@ -10,7 +10,7 @@ description = "Protocol Buffers payload wire for the shared uProtocol Rust core"
 publish = false
 
 [dependencies]
-up-rust-core = { git = "https://github.com/PLeVasseur/up-rust.git", rev = "08c0a83e174afea6b227e74c9dfaadf8b0828258" }
+up-rust-core = { git = "https://github.com/PLeVasseur/up-rust.git", rev = "dc7f22da2bf90d98d94d468621df26caadf853ca" }
 protobuf = "=3.7.2"
 
 [workspace]

@@ -20,7 +20,7 @@ in this external wire crate: the shared core gains no Protobuf dependency,
 generated message types or code generator.
 
 The core Git dependency pins
-[`08c0a83`](https://github.com/PLeVasseur/up-rust/commit/08c0a83e174afea6b227e74c9dfaadf8b0828258) on the
+[`dc7f22d`](https://github.com/PLeVasseur/up-rust/commit/dc7f22da2bf90d98d94d468621df26caadf853ca) on the
 experimental `codex/allocator-mcu-spike` branch, the same revision used by both
 uP-L1 transports, the native wire and both allocator providers. Changes to that
 shared contract require compatibility checks across all six consumers.
@@ -37,7 +37,7 @@ cross-compilation is supported. Both x86-64 targets must build for a CX16 minimu
 ISA, for example `-C target-feature=+cmpxchg16b`; the Windows GNU target is not
 supported. The SDK's Windows support is limited to its private deadline
 primitive, and no Windows build of this crate has been checked. See the
-[SDK core README](https://github.com/PLeVasseur/up-rust/blob/08c0a83e174afea6b227e74c9dfaadf8b0828258/core/README.md).
+[SDK core README](https://github.com/PLeVasseur/up-rust/blob/dc7f22da2bf90d98d94d468621df26caadf853ca/core/README.md).
 
 ## Codec behavior
 
